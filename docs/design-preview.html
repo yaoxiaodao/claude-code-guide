@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude Code 中文教程 - 设计预览</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #F97316;
+      --primary-light: #FB923C;
+      --accent-green: #22C55E;
+      --bg-warm: #FFFBF7;
+      --bg-dark: #1E1E1E;
+      --text-dark: #1F2937;
+      --text-muted: #6B7280;
+      --border: #E5E7EB;
+      --surface: #FFFFFF;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Noto Sans SC', system-ui, sans-serif;
+      background: var(--bg-warm);
+      color: var(--text-dark);
+      line-height: 1.7;
+    }
+
+    /* Header */
+    .header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--primary);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+    }
+
+    .progress-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 3px;
+      background: var(--primary);
+      width: 35%;
+      border-radius: 0 2px 2px 0;
+    }
+
+    /* Layout */
+    .layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      min-height: calc(100vh - 64px);
+    }
+
+    /* Sidebar */
+    .sidebar {
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      padding: 24px 0;
+      position: sticky;
+      top: 64px;
+      height: calc(100vh - 64px);
+      overflow-y: auto;
+    }
+
+    .nav-section {
+      padding: 0 16px;
+      margin-bottom: 24px;
+    }
+
+    .nav-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      color: var(--text-dark);
+      cursor: pointer;
+      transition: background 0.15s;
+      text-decoration: none;
+    }
+
+    .nav-item:hover {
+      background: #FFF7ED;
+    }
+
+    .nav-item.active {
+      background: #FFF7ED;
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    .nav-item.completed {
+      color: var(--text-muted);
+    }
+
+    .nav-item.completed::before {
+      content: '✓';
+      color: var(--accent-green);
+      font-weight: 600;
+    }
+
+    .nav-item.current {
+      background: var(--primary);
+      color: white;
+      font-weight: 500;
+    }
+
+    .nav-item.current::before {
+      content: '→';
+    }
+
+    /* Main Content */
+    .main {
+      padding: 48px 64px;
+      max-width: 800px;
+    }
+
+    .chapter-meta {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .chapter-meta span {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .chapter-title {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 24px;
+      line-height: 1.3;
+    }
+
+    .chapter-desc {
+      font-size: 18px;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+      line-height: 1.8;
+    }
+
+    /* Section */
+    .section {
+      margin-bottom: 48px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--text-dark);
+    }
+
+    .section-title::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 20px;
+      background: var(--primary);
+      border-radius: 2px;
+      margin-right: 12px;
+      vertical-align: middle;
+    }
+
+    /* Code Block */
+    .code-block {
+      background: var(--bg-dark);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 16px 0;
+      position: relative;
+    }
+
+    .code-block pre {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #D4D4D4;
+      overflow-x: auto;
+    }
+
+    .code-lang {
+      position: absolute;
+      top: 12px;
+      left: 20px;
+      font-size: 11px;
+      color: #6B7280;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .code-copy {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      background: #374151;
+      border: none;
+      color: #9CA3AF;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      cursor: pointer;
+      font-family: 'Noto Sans SC', sans-serif;
+      transition: all 0.15s;
+    }
+
+    .code-copy:hover {
+      background: #4B5563;
+      color: white;
+    }
+
+    .code-copy.copied {
+      background: var(--accent-green);
+      color: white;
+    }
+
+    /* Terminal Block */
+    .terminal-block {
+      background: #0D1117;
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 16px 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+    }
+
+    .terminal-header {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .terminal-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .terminal-dot.red { background: #FF5F56; }
+    .terminal-dot.yellow { background: #FFBD2E; }
+    .terminal-dot.green { background: #27CA40; }
+
+    .terminal-content {
+      color: #C9D1D9;
+    }
+
+    .terminal-line {
+      margin-bottom: 4px;
+    }
+
+    .terminal-prompt {
+      color: #8B949E;
+    }
+
+    .terminal-command {
+      color: #C9D1D9;
+    }
+
+    .terminal-output {
+      color: #7EE787;
+    }
+
+    .terminal-error {
+      color: #FF7B72;
+    }
+
+    /* Tip Box */
+    .tip-box {
+      background: #FFF7ED;
+      border: 1px solid #FED7AA;
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 24px 0;
+    }
+
+    .tip-title {
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tip-content {
+      color: #92400E;
+      font-size: 15px;
+    }
+
+    /* Exercise Box */
+    .exercise-box {
+      background: linear-gradient(135deg, #F0FDF4 0%, #DCFCE7 100%);
+      border: 1px solid #86EFAC;
+      border-radius: 12px;
+      padding: 24px;
+      margin: 32px 0;
+    }
+
+    .exercise-title {
+      font-weight: 700;
+      color: #166534;
+      margin-bottom: 12px;
+      font-size: 16px;
+    }
+
+    .exercise-content {
+      color: #15803D;
+      font-size: 15px;
+    }
+
+    /* Dark Mode Toggle */
+    .dark-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface);
+      cursor: pointer;
+      font-size: 14px;
+      color: var(--text-dark);
+      transition: all 0.15s;
+    }
+
+    .dark-toggle:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        display: none;
+      }
+
+      .main {
+        padding: 24px;
+      }
+
+      .chapter-title {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="logo">
+      <div class="logo-icon">CC</div>
+      Claude Code 中文教程
+    </div>
+    <div style="display: flex; gap: 12px; align-items: center;">
+      <button class="dark-toggle">🌙 暗色模式</button>
+      <button class="dark-toggle">🔍 搜索</button>
+    </div>
+    <div class="progress-bar"></div>
+  </div>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="nav-section">
+        <div class="nav-title">入门篇</div>
+        <a href="#" class="nav-item completed">1. Claude Code 是什么</a>
+        <a href="#" class="nav-item completed">2. 安装 Claude Code</a>
+        <a href="#" class="nav-item completed">3. API Key 获取与配置</a>
+        <a href="#" class="nav-item current">4. 首次对话</a>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-title">基础篇</div>
+        <a href="#" class="nav-item">5. 读懂代码库</a>
+        <a href="#" class="nav-item">6. 编辑和创建代码</a>
+        <a href="#" class="nav-item">7. 多轮对话技巧</a>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-title">实践篇</div>
+        <a href="#" class="nav-item">8. 调试和错误处理</a>
+        <a href="#" class="nav-item">9. 代码审查</a>
+        <a href="#" class="nav-item">10. Git 操作辅助</a>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="chapter-meta">
+        <span>📖 入门篇 · 第 4 章</span>
+        <span>⏱️ 约 15 分钟</span>
+      </div>
+
+      <h1 class="chapter-title">首次对话 - Hello World</h1>
+
+      <p class="chapter-desc">
+        这一章你会学会和 Claude Code 对话的基本方式。这是你们第一次"对话"，
+        就像认识一个新朋友。不用担心说错，Claude 很耐心。
+      </p>
+
+      <div class="section">
+        <h2 class="section-title">启动对话</h2>
+        <p style="margin-bottom: 16px; color: var(--text-muted);">
+          打开终端，输入 <code style="background: #FFF7ED; padding: 2px 6px; border-radius: 4px; font-family: 'JetBrains Mono', monospace;">claude</code>，回车：
+        </p>
+
+        <div class="terminal-block">
+          <div class="terminal-header">
+            <div class="terminal-dot red"></div>
+            <div class="terminal-dot yellow"></div>
+            <div class="terminal-dot green"></div>
+          </div>
+          <div class="terminal-content">
+            <div class="terminal-line">
+              <span class="terminal-prompt">~/projects/my-app$</span>
+              <span class="terminal-command"> claude</span>
+            </div>
+            <div class="terminal-line">
+              <span class="terminal-output">✓ Connected to Claude</span>
+            </div>
+            <div class="terminal-line">
+              <span class="terminal-output">You can now start chatting!</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">说"你好"</h2>
+        <p style="margin-bottom: 16px; color: var(--text-muted);">
+          现在你可以直接输入中文，Claude 会用中文回复你：
+        </p>
+
+        <div class="code-block">
+          <span class="code-lang">terminal</span>
+          <button class="code-copy" onclick="this.textContent='已复制!'; this.classList.add('copied')">复制</button>
+          <pre><span style="color: #9CA3AF;">> 你好，Claude!</span>
+
+<span style="color: #7EE787;">你好！很高兴认识你。我是 Claude，一个 AI 编程助手。
+我可以帮你读代码、写代码、解释代码，或者一起讨论技术问题。
+有什么我可以帮你的吗？</span></pre>
+        </div>
+      </div>
+
+      <div class="tip-box">
+        <div class="tip-title">💡 小提示</div>
+        <div class="tip-content">
+          Claude 会记住对话的上下文，所以你可以像和同事聊天一样，
+          一步一步地完成一个任务。
+        </div>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">创建一个测试文件</h2>
+        <p style="margin-bottom: 16px; color: var(--text-muted);">
+          让我们创建一个简单的 Python 文件来测试：
+        </p>
+
+        <div class="code-block">
+          <span class="code-lang">python</span>
+          <button class="code-copy" onclick="this.textContent='已复制!'; this.classList.add('copied')">复制</button>
+          <pre><span style="color: #FF7B72;"># test.py</span>
+<span style="color: #79C0FF;">print</span>(<span style="color: #A5D6FF;">"Hello World"</span>)</pre>
+        </div>
+      </div>
+
+      <div class="exercise-box">
+        <div class="exercise-title">🎯 练习题</div>
+        <div class="exercise-content">
+          让 Claude 帮你写一个"计算两个数之和"的 Python 程序。
+          输入示例：<br><br>
+          <strong>你：</strong>帮我写一个程序，输入两个数字，输出它们的和<br>
+          <strong>Claude 会：</strong>给你一个完整的程序代码
+        </div>
+      </div>
+
+    </main>
+  </div>
+</body>
+</html>

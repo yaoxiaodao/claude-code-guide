@@ -2,56 +2,53 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## 项目状态
+## 项目概述
 
-本项目正在开发中 — 已有设计文档和内容大纲，正在搭建 VitePress 项目架子。
+Claude Code 中文渐进式教程，一个面向零基础用户的 VitePress 静态网站。技术栈：VitePress + GitHub Pages + GitHub Actions CI/CD。
 
-## 仓库结构
+## 常用命令
 
-```
-/
-├── docs/
-│   ├── design-preview.html    # 设计预览（HTML 原型）
-│   └── yaojianfeng-*-design-*.md  # office-hours 设计文档
-├── DESIGN.md                 # 设计系统规范
-├── README.md                 # 项目说明
-└── .idea/                   # JetBrains IDE 配置
+```bash
+npm run docs:dev      # 本地开发，实时预览
+npm run docs:build     # 构建生产版本
+npm run docs:preview   # 预览构建结果
 ```
 
-## 设计系统
+## 项目结构
 
-所有视觉和 UI 决策都在 DESIGN.md 中定义：
-- 配色：橙色主色 + 米白背景
-- 字体：Noto Sans SC（正文）+ Noto Serif SC（标题）+ JetBrains Mono（代码）
-- 布局：左侧导航 + 右侧内容 + 顶部进度条
-
-## 开发说明
-
-**技术栈：** VitePress + GitHub Pages
-
-**目录结构（规划中）：**
 ```
 docs/
 ├── .vitepress/
-│   └── config.ts         # VitePress 配置
-├── public/              # 静态资源
-└── guide/                # 教程文章
-    ├── 1-getting-started/
-    ├── 2-basic-usage/
-    ├── 3-practical-workflows/
-    └── 4-next-steps/
+│   ├── config.ts          # VitePress 配置（导航、侧边栏、多语言）
+│   └── theme/
+│       ├── index.ts        # 主题入口
+│       └── style.css       # 自定义样式（配色、字体、代码高亮）
+├── guide/                  # 教程内容（按章节组织）
+│   ├── 1-getting-started/  # 入门篇（4章）
+│   ├── 2-basic-usage/     # 基础使用篇（3章）
+│   └── 3-practical-workflows/  # 实战篇（3章）
+├── public/                 # 静态资源（logo 等）
+└── index.md                # 首页
 ```
 
-## 项目规范
+## 架构说明
 
-本项目遵循以下编码准则（源自 Andrej Karpathy 的 LLM 编码最佳实践）：
+- **主题定制**：通过 `docs/.vitepress/theme/style.css` 覆盖 VitePress CSS 变量实现橙色调色盘
+- **代码高亮**：深色背景 + 亮色文字（淡黄 #E8C47C），关键词橙 #FFB347、函数浅蓝 #7DD3FC
+- **部署**：`.github/workflows/deploy.yml` 实现 push 到 master 后自动部署到 GitHub Pages
+- **多语言**：VitePress 配置中设置了 `lang: 'zh-CN'`
 
-1. **编码前思考** — 明确假设，呈现权衡，不隐藏困惑
-2. **简单优先** — 用最少的代码解决问题，不做投机性功能
-3. **精准修改** — 只改必须改的，清理自己造成的孤儿代码
-4. **目标驱动** — 定义可验证的成功标准，循环验证直到达成
+## 设计系统
 
-## 备注
+设计决策在 `DESIGN.md` 中定义：
+- 配色：橙色主色（#F97316）+ 米白背景（#FFFBF7）
+- 字体：Noto Sans SC（正文）+ Noto Serif SC（标题）+ JetBrains Mono（代码）
+- 布局：左侧导航 + 右侧内容
 
-- 根据 README.md，本项目是一个关于学习和使用 Claude Code 的指南/教程项目
-- 仓库使用 `.idea/` 目录管理 IDE 设置（JetBrains）
+## 开发规范
+
+遵循 Karpathy 的 LLM 编码准则：
+1. **编码前思考** — 明确假设，呈现权衡
+2. **简单优先** — 用最少的代码解决问题
+3. **精准修改** — 只改必须改的
+4. **目标驱动** — 定义可验证的成功标准

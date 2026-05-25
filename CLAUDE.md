@@ -19,15 +19,18 @@ npm run docs:preview   # 预览构建结果
 ```
 docs/
 ├── .vitepress/
-│   ├── config.ts          # VitePress 配置（导航、侧边栏、多语言）
+│   ├── config.ts          # VitePress 配置（导航、侧边栏、base 路径）
+│   ├── dist/              # 构建产物（已纳入 git）
 │   └── theme/
 │       ├── index.ts        # 主题入口
 │       └── style.css       # 自定义样式（配色、字体、代码高亮）
-├── guide/                  # 教程内容（按章节组织）
+├── guide/                  # 教程内容
 │   ├── 1-getting-started/  # 入门篇（4章）
-│   ├── 2-basic-usage/     # 基础使用篇（3章）
-│   └── 3-practical-workflows/  # 实战篇（3章）
-├── public/                 # 静态资源（logo 等）
+│   ├── 2-basic-usage/      # 基础使用篇（3章）
+│   ├── 3-practical-workflows/   # 实战篇（5章）
+│   ├── 4-advanced-usage/  # 高阶篇（5章）
+│   └── 5-next-steps/      # 继续学习（1章）
+├── public/                 # 静态资源
 └── index.md                # 首页
 ```
 
@@ -35,7 +38,10 @@ docs/
 
 - **主题定制**：通过 `docs/.vitepress/theme/style.css` 覆盖 VitePress CSS 变量实现橙色调色盘
 - **代码高亮**：深色背景 + 亮色文字（淡黄 #E8C47C），关键词橙 #FFB347、函数浅蓝 #7DD3FC
-- **部署**：`.github/workflows/deploy.yml` 实现 push 到 master 后自动部署到 GitHub Pages
+- **部署**：
+  - `base: '/claude-code-guide/'` 配置在 `config.ts` 中
+  - `.github/workflows/deploy.yml` 实现 push 到 master 后自动部署到 GitHub Pages
+  - 构建产物 `docs/.vitepress/dist/` 纳入 git，确保 GitHub Pages 能正确托管
 - **多语言**：VitePress 配置中设置了 `lang: 'zh-CN'`
 
 ## 设计系统
@@ -57,7 +63,6 @@ docs/
 
 When the user's request matches an available skill, ALWAYS invoke it using the Skill
 tool as your FIRST action. Do NOT answer directly, do NOT use other tools first.
-The skill has specialized workflows that produce better results than ad-hoc answers.
 
 Key routing rules:
 - Product ideas, "is this worth building", brainstorming → invoke office-hours

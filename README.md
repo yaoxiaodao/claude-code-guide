@@ -4,7 +4,8 @@
 
 ## 在线访问
 
-访问 [https://yaojianfeng.gitee.io/claudecode-guide/](https://yaojianfeng.gitee.io/claudecode-guide/) 查看在线版本。
+- **GitHub Pages**: [https://yaoxiaodao.github.io/claude-code-guide/](https://yaoxiaodao.github.io/claude-code-guide/)
+- **Gitee Pages**: [https://yaojianfeng.gitee.io/claudecode-guide/](https://yaojianfeng.gitee.io/claudecode-guide/)
 
 ## 本地开发
 
@@ -14,6 +15,14 @@ npm run docs:dev
 ```
 
 浏览器打开 http://localhost:5173 查看实时预览。
+
+## 部署
+
+推送到 master 分支后，GitHub Actions 会自动构建并部署到 GitHub Pages。
+
+```bash
+git push github master
+```
 
 ## 教程大纲
 
@@ -32,6 +41,15 @@ npm run docs:dev
 - 调试代码
 - 代码审查
 - Git 操作
+- CLAUDE.md 使用
+- 日常工作流
+
+**高阶篇**
+- MCP (Model Context Protocol)
+- Skill 扩展
+- 内置命令
+- Plugin 开发
+- Agent 模式
 
 ## 技术栈
 

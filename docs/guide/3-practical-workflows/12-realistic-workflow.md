@@ -179,4 +179,4 @@ A: 这是正确的谨慎。每次修改前 Claude 都会给你确认机会，最
 
 恭喜你完成了所有实战内容。下一章是最后一章，我们会聊聊接下来可以学什么。
 
-[:point_right: 第十六章：继续学习之路](/guide/5-next-steps/16-next-steps)
+[:point_right: 第十八章：继续学习之路](/guide/5-next-steps/18-next-steps)

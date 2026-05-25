@@ -79,63 +79,6 @@ claude --agent
 | confirmBeforeExecute | 执行前是否确认 | true |
 | dangerousActions | 高风险操作列表 | [] |
 
-## 代理配置
-
-如果你在中国大陆或其他无法直接访问 Anthropic API 的地区，需要配置代理。
-
-### 环境变量配置
-
-```bash
-# HTTP 代理
-export HTTP_PROXY=http://127.0.0.1:7890
-export HTTPS_PROXY=http://127.0.0.1:7890
-
-# SOCKS5 代理
-export SOCKS_PROXY=socks5://127.0.0.1:1080
-```
-
-### Claude 专用代理
-
-```bash
-# 通过代理启动 Claude
-claude --proxy http://127.0.0.1:7890
-```
-
-### 配置文件设置
-
-```json
-// .claude.json
-{
-  "apiProxy": "http://127.0.0.1:7890",
-  "apiBaseUrl": "https://api.anthropic.com"
-}
-```
-
-### 常见代理软件
-
-| 软件 | 协议 | 适用场景 |
-|------|------|---------|
-| Clash | HTTP/SOCKS5 | 通用代理 |
-| V2Ray | VMess/Trojan | 深度伪装 |
-| Shadowsocks | SOCKS5 | 轻量代理 |
-| Surge | HTTP/SOCKS5 | macOS/iOS |
-
-### 代理配置示例
-
-**Clash 配置（~/.config/clash/config.yaml）**
-
-```yaml
-proxy-groups:
-  - name: "Claude API"
-    type: select
-    proxies:
-      - 香港节点
-      - 日本节点
-
-rules:
-  - DOMAIN-KEYWORD,anthropic,Claude API
-```
-
 ## Agent 模式实战
 
 ### 例子一：批量重命名
@@ -244,4 +187,4 @@ A: 每一步操作都会显示日志，方便你追踪和理解。
 
 恭喜你完成了高阶用法篇！接下来进入最后一章。
 
-[:point_right: 第十八章：继续学习之路](../5-next-steps/16-next-steps)
+[:point_right: 第十八章：继续学习之路](../5-next-steps/18-next-steps)

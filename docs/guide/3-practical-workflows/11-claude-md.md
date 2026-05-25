@@ -142,4 +142,4 @@ A: 不需要。Claude 支持多语言，用中文写完全没问题。
 
 下一章我们会整合前面所学，体验一个完整的日常工作流。
 
-[:point_right: 第十二章：日常工作流实战](/guide/4-next-steps/12-realistic-workflow)
+[:point_right: 第十二章：日常工作流实战](/guide/3-practical-workflows/12-realistic-workflow)

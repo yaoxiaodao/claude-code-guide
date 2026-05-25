@@ -88,4 +88,4 @@ A: `git reflog` 可以找回之前的版本。
 
 ## 下一步
 
-查看 [继续学习之路](/guide/4-next-steps/12-realistic-workflow) 了解进阶话题。
+查看 [继续学习之路](/guide/3-practical-workflows/12-realistic-workflow) 了解进阶话题。

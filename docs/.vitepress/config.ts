@@ -18,7 +18,8 @@ export default defineConfig({
     nav: [
       { text: '快速开始', link: '/guide/1-getting-started/' },
       { text: '基础用法', link: '/guide/2-basic-usage/' },
-      { text: '实战工作流', link: '/guide/3-practical-workflows/' }
+      { text: '实战工作流', link: '/guide/3-practical-workflows/' },
+      { text: '继续学习', link: '/guide/4-next-steps/' }
     ],
 
     sidebar: {
@@ -47,9 +48,19 @@ export default defineConfig({
         {
           text: '实践篇',
           items: [
-            { text: '第八章：调试和错误处理', link: '/guide/3-practical-workflows/8-debugging' },
-            { text: '第九章：代码审查和优化', link: '/guide/3-practical-workflows/9-code-review' },
-            { text: '第十章：Git 操作辅助', link: '/guide/3-practical-workflows/10-git-operations' }
+            { text: '第八章：调试和错误处理', link: '/guide/3-practical-workflows/08-debugging' },
+            { text: '第九章：代码审查和优化', link: '/guide/3-practical-workflows/09-code-review' },
+            { text: '第十章：Git 操作辅助', link: '/guide/3-practical-workflows/10-git-operations' },
+            { text: '第十一章：CLAUDE.md', link: '/guide/3-practical-workflows/11-claude-md' }
+          ]
+        }
+      ],
+      '/guide/4-next-steps/': [
+        {
+          text: '进阶篇',
+          items: [
+            { text: '第十二章：日常工作流实战', link: '/guide/4-next-steps/12-realistic-workflow' },
+            { text: '第十三章：继续学习之路', link: '/guide/4-next-steps/13-next-steps' }
           ]
         }
       ]

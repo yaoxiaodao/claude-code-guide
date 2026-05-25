@@ -93,4 +93,4 @@ A: 用 `/undo` 撤销，或手动回滚到之前的版本。
 
 下一章我们会学习如何让 Claude 帮你做代码审查。
 
-[:point_right: 第九章：代码审查和优化](/guide/3-practical-workflows/9-code-review)
+[:point_right: 第九章：代码审查和优化](/guide/3-practical-workflows/09-code-review)

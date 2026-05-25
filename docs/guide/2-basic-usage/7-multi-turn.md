@@ -87,4 +87,4 @@ A: 输入 `/clear` 清空重来。
 
 下一章我们会学习如何用 Claude 帮你调试代码。
 
-[:point_right: 第八章：调试和错误处理](/guide/3-practical-workflows/8-debugging)
+[:point_right: 第八章：调试和错误处理](/guide/3-practical-workflows/08-debugging)

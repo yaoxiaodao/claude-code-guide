@@ -4,6 +4,8 @@ export default defineConfig({
   title: 'Claude Code 中文教程',
   description: '从零开始学习 Claude Code，一个友好的 AI 编程助手',
 
+  base: '/claude-code-guide/',
+
   lang: 'zh-CN',
 
   head: [

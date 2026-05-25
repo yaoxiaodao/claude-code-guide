@@ -26,3 +26,7 @@ hs_err_pid*
 node_modules/
 
 .claude/settings.local.json
+
+# VitePress build output
+docs/.vitepress/cache/
+docs/.vitepress/dist/

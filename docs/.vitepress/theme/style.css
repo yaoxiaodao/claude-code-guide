@@ -50,18 +50,20 @@
   --vp-radius-lg: 12px;
 }
 
-/* 暗色模式 */
-.dark {
-  --vp-c-bg: #1F2937;
-  --vp-c-bg-soft: #111827;
-  --vp-c-bg-mute: #374151;
-  --vp-c-text-1: #F9FAFB;
-  --vp-c-text-2: #E5E7EB;
-  --vp-c-text-3: #9CA3AF;
-  --vp-c-border: #374151;
-  --vp-c-divider: #374151;
-  --vp-nav-bg-color: #1F2937;
-  --vp-sidebar-bg-color: #1F2937;
+/* 暗色模式 - 使用 CSS 变量集中管理 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --vp-c-bg: #1F2937;
+    --vp-c-bg-soft: #111827;
+    --vp-c-bg-mute: #374151;
+    --vp-c-text-1: #F9FAFB;
+    --vp-c-text-2: #E5E7EB;
+    --vp-c-text-3: #9CA3AF;
+    --vp-c-border: #374151;
+    --vp-c-divider: #374151;
+    --vp-nav-bg-color: #1F2937;
+    --vp-sidebar-bg-color: #1F2937;
+  }
 }
 
 /* 字体 */

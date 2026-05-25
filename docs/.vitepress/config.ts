@@ -82,7 +82,7 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/yaojianfeng/claudecode-guide' }
+      { icon: 'github', link: 'https://github.com/yaoxiaodao/claude-code-guide' }
     ],
 
     footer: {
@@ -91,7 +91,7 @@ export default defineConfig({
     },
 
     editLink: {
-      pattern: 'https://github.com/yaojianfeng/claudecode-guide/edit/master/docs/:path',
+      pattern: 'https://github.com/yaoxiaodao/claude-code-guide/edit/master/docs/:path',
       text: '帮助改进这篇教程'
     }
   }

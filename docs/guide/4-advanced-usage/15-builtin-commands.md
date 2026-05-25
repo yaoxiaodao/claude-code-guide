@@ -216,6 +216,6 @@ A: 命令行参数 > 配置文件 > 默认值。
 
 ## 下一章
 
-恭喜你完成了高阶用法篇！接下来进入最后一章，继续学习之路。
+恭喜你完成了高阶用法前三章！接下来学习 Plugin 插件系统。
 
-[:point_right: 第十六章：继续学习之路](/guide/5-next-steps/16-next-steps)
+[:point_right: 第十六章：Plugin 插件系统](/guide/4-advanced-usage/16-plugin)

@@ -1,26 +1,42 @@
 ---
-title: 第十五章：Claude 内置命令
-description: 学会使用 Claude Code 的斜杠命令和快捷操作
+title: 第十五章：claude 命令
+description: 熟练使用内置命令和自定义命令
 ---
 
-# 第十五章：Claude 内置命令
+# 第十五章：claude 命令
 
 ::: tip 学习目标
-学完这章，你会熟练使用 Claude Code 的内置命令，提高工作效率。
+学完这章，你会熟练使用 Claude Code 的内置命令和自定义命令，提高工作效率。
 :::
 
-## 什么是内置命令
+## 命令与 Skill 的区别
 
-Claude Code 有一系列以 `/` 开头的内置命令（也叫斜杠命令）。输入 `/` 可以看到所有可用命令。
+很多初学者容易混淆 **命令（Command）** 和 **Skill**：
+
+| 维度 | 命令 (Command) | Skill (技能) |
+|------|--------------|-------------|
+| **触发方式** | `/命令名` | `/skill名` |
+| **实现形式** | 纯文本文件 | 目录 + SKILL.md + 可选代码 |
+| **复杂程度** | 简单文本替换 | 复杂 AI 工作流 |
+| **适用场景** | 重复文本/指令 | 复杂可复用工作流 |
+| **存储位置** | `.claude/commands/` | `.claude/skills/` |
+
+**简单理解**：
+- **命令** = 快捷键，快速执行固定文本
+- **Skill** = 工具包，封装复杂能力
+
+## 内置命令
+
+输入 `/` 可以看到所有可用命令：
 
 ```
 /ask      /plan      /review    /test
 /complete /undo      /retry     /clear
 ```
 
-## 常用命令详解
+### 常用内置命令详解
 
-### 1. `/ask` — 快速提问
+#### 1. `/ask` — 快速提问
 
 直接问一个问题，不需要在代码库上下文中：
 
@@ -33,7 +49,7 @@ Claude Code 有一系列以 `/` 开头的内置命令（也叫斜杠命令）。
 - 临时问答
 - 不需要看代码的简单问题
 
-### 2. `/plan` — 生成任务计划
+#### 2. `/plan` — 生成任务计划
 
 让 Claude 分析代码库，生成修改计划：
 
@@ -47,7 +63,7 @@ Claude 会：
 2. 生成修改步骤
 3. 等待你确认后执行
 
-### 3. `/review` — 代码审查
+#### 3. `/review` — 代码审查
 
 对当前分支的代码进行全面审查：
 
@@ -60,7 +76,7 @@ Claude 会：
 2. 发现潜在 bug
 3. 给出优化建议
 
-### 4. `/test` — 生成测试
+#### 4. `/test` — 生成测试
 
 为当前代码生成测试用例：
 
@@ -69,7 +85,7 @@ Claude 会：
 帮我给这个函数写单元测试
 ```
 
-### 5. `/complete` — 标记完成
+#### 5. `/complete` — 标记完成
 
 标记任务完成：
 
@@ -77,7 +93,7 @@ Claude 会：
 /complete
 ```
 
-### 6. `/undo` — 撤销上一步
+#### 6. `/undo` — 撤销上一步
 
 撤销 Claude 最近的操作：
 
@@ -85,7 +101,7 @@ Claude 会：
 /undo
 ```
 
-### 7. `/retry` — 重试
+#### 7. `/retry` — 重试
 
 让 Claude 重新思考刚才的回答：
 
@@ -94,7 +110,7 @@ Claude 会：
 上一个方案太复杂了，换个简单的
 ```
 
-### 8. `/clear` — 清空对话
+#### 8. `/clear` — 清空对话
 
 清空当前对话历史：
 
@@ -102,7 +118,7 @@ Claude 会：
 /clear
 ```
 
-### 9. `/init` — 初始化项目
+#### 9. `/init` — 初始化项目
 
 在当前目录创建 Claude Code 配置文件：
 
@@ -110,13 +126,195 @@ Claude 会：
 /init
 ```
 
-### 10. `/claude` — 查看版本信息
+#### 10. `/claude` — 查看版本信息
 
 查看 Claude Code 版本：
 
 ```
 /claude
 ```
+
+## 自定义命令
+
+除了内置命令，你还可以创建自定义命令。
+
+### 什么是自定义命令
+
+自定义命令是将常用的文本或指令封装成快捷方式，方便重复使用。
+
+**适用场景**：
+- 固定格式的代码模板
+- 常用的 Git 操作序列
+- 重复性的文本输入
+
+### 创建自定义命令
+
+#### 目录结构
+
+**项目级**（纳入 Git，团队共享）：
+```
+项目根目录/
+└── .claude/
+    └── commands/
+        └── my-command.md
+```
+
+**用户级**（跨项目通用）：
+```
+~/.claude/
+└── commands/
+    └── my-command.md
+```
+
+#### 命令文件格式
+
+```markdown
+# 命令名称
+命令描述（可选）
+
+---
+
+你要执行的指令内容
+```
+
+### 实际案例
+
+#### 案例 1：代码模板命令
+
+**场景**：快速插入 React 组件模板
+
+**创建** `~/.claude/commands/react-component.md`：
+
+```markdown
+# react-component
+生成 React 函数组件模板
+
+---
+
+请生成以下格式的 React 函数组件：
+
+```jsx
+import React from 'react';
+
+export function ComponentName({ props }) {
+  return (
+    <div>
+      {/* 组件内容 */}
+    </div>
+  );
+}
+```
+
+使用 `{ComponentName}` 作为组件名。
+```
+
+**使用**：
+```
+/react-component
+Button
+```
+
+#### 案例 2：Git 提交命令
+
+**场景**：规范 Git 提交信息格式
+
+**创建** `~/.claude/commands/git-commit.md`：
+
+```markdown
+# git-commit
+生成规范的 Git 提交信息
+
+---
+
+请根据我刚才的修改生成符合 Conventional Commits 规范的提交信息。
+格式：type(scope): description
+类型：feat/fix/docs/style/refactor/test/chore
+```
+
+**使用**：
+```
+/git-commit
+```
+
+#### 案例 3：项目文档命令
+
+**场景**：快速生成 API 文档模板
+
+**创建** `docs/.claude/commands/api-doc.md`：
+
+```markdown
+# api-doc
+生成 API 文档模板
+
+---
+
+请为以下 API 生成 Markdown 文档：
+
+## 接口名称
+[简要描述]
+
+## 请求方式
+GET/POST/PUT/DELETE
+
+## 请求参数
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+
+## 响应示例
+```json
+{
+  "code": 0,
+  "data": {}
+}
+```
+```
+
+#### 案例 4：测试用例命令
+
+**场景**：快速生成测试文件模板
+
+**创建** `tests/.claude/commands/test-file.md`：
+
+```markdown
+# test-file
+生成测试文件模板
+
+---
+
+请为 {filename} 生成 Jest 测试文件，使用以下模板：
+
+```javascript
+describe('模块名', () => {
+  test('测试用例描述', () => {
+    // Arrange
+    const input = {};
+    
+    // Act
+    const result = functionName(input);
+    
+    // Assert
+    expect(result).toBe(expected);
+  });
+});
+```
+```
+
+### 管理自定义命令
+
+| 操作 | 命令 |
+|------|------|
+| 查看所有命令 | 输入 `/` 查看 |
+| 创建新命令 | 在 `.claude/commands/` 目录添加 `.md` 文件 |
+| 编辑命令 | 修改对应 `.md` 文件 |
+| 删除命令 | 删除对应 `.md` 文件 |
+
+### 命令文件规范
+
+1. **文件名** = 命令名（不含扩展名）
+2. **首行** = 命令名称（与文件名一致）
+3. **第二行起** = 空行后可写描述
+4. **分隔线** `---` 后是执行的指令内容
+5. **占位符** 用 `{变量名}` 表示，调用时替换
 
 ## 命令行参数
 
@@ -181,27 +379,15 @@ export CLAUDE_BASE_URL=https://your-proxy.com
 export CLAUDE_MODEL=opus
 ```
 
-## 配置文件
-
-在项目根目录创建 `.claude.json` 可以配置项目级设置：
-
-```json
-{
-  "model": "sonnet",
-  "maxTokens": 4096,
-  "temperature": 0.7
-}
-```
-
 ## 常见问题
 
 **Q: `/plan` 和直接说"帮我改"有什么区别？**
 
 A: `/plan` 会先分析代码，生成详细的修改计划，等你确认后再执行。更安全，适合大改动。
 
-**Q: 可以自定义斜杠命令吗？**
+**Q: 命令和 Skill 哪个更好用？**
 
-A: 可以，通过 Skill 系统可以添加自定义命令。
+A: 简单重复任务用命令，复杂工作流用 Skill。命令是快捷键，Skill 是工具箱。
 
 **Q: 命令行参数和配置文件哪个优先级高？**
 
@@ -213,6 +399,7 @@ A: 命令行参数 > 配置文件 > 默认值。
 2. 用 `/ask` 问一个简单问题
 3. 用 `/review` 审查一段代码
 4. 尝试 `/undo` 撤销刚才的操作
+5. 创建一个简单的自定义命令
 
 ## 下一章
 

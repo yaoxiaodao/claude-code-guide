@@ -65,9 +65,10 @@ export default defineConfig({
           items: [
             { text: '第十三章：MCP', link: '/guide/4-advanced-usage/13-mcp' },
             { text: '第十四章：Skill', link: '/guide/4-advanced-usage/14-skills' },
-            { text: '第十五章：内置命令', link: '/guide/4-advanced-usage/15-builtin-commands' },
-            { text: '第十六章：Plugin', link: '/guide/4-advanced-usage/16-plugin' },
-            { text: '第十七章：Agent', link: '/guide/4-advanced-usage/17-agent' }
+            { text: '第十五章：Command 命令', link: '/guide/4-advanced-usage/15-builtin-commands' },
+            { text: '第十六章：Hooks 与安全配置', link: '/guide/4-advanced-usage/16-hooks-security' },
+            { text: '第十七章：Agent 模式', link: '/guide/4-advanced-usage/17-agent' },
+            { text: '第十八章：GitHub Actions 集成', link: '/guide/4-advanced-usage/18-github-actions' }
           ]
         }
       ],
@@ -75,7 +76,7 @@ export default defineConfig({
         {
           text: '继续学习',
           items: [
-            { text: '第十八章：继续学习之路', link: '/guide/5-next-steps/18-next-steps' }
+            { text: '第十九章：继续学习之路', link: '/guide/5-next-steps/19-next-steps' }
           ]
         }
       ]

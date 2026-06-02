@@ -1,9 +1,9 @@
 ---
-title: 第十五章：claude 命令
+title: 第十五章：Command 命令
 description: 熟练使用内置命令和自定义命令
 ---
 
-# 第十五章：claude 命令
+# 第十五章：Command 命令
 
 ::: tip 学习目标
 学完这章，你会熟练使用 Claude Code 的内置命令和自定义命令，提高工作效率。

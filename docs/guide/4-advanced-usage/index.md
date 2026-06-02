@@ -12,8 +12,9 @@ description: 深入探索 Claude Code 的高级功能
 1. [第十三章：MCP — 连接外部工具](./13-mcp) — 用 MCP 连接数据库、GitHub、浏览器
 2. [第十四章：Skill 的安装与使用](./14-skills) — 安装和使用技能扩展
 3. [第十五章：claude 命令](./15-builtin-commands) — 熟练使用内置命令和自定义命令
-4. [第十六章：Plugin 插件系统](./16-plugin) — 深入了解插件系统及开发方法
+4. [第十六章：Hooks 与安全配置](./16-hooks-security) — 使用 Hooks 系统和企业级安全配置
 5. [第十七章：Agent 模式与代理配置](./17-agent) — 自主完成任务与代理配置
+6. [第十八章：GitHub Actions 集成](./18-github-actions) — 将 Claude Code 集成到 CI/CD 流水线
 
 ## 适合人群
 

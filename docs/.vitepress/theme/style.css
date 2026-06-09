@@ -32,8 +32,8 @@
 
   /* 代码块 - 亮色文字便于阅读 */
   --vp-code-block-bg: #1E1E1E;
-  --vp-code-bg: #2D2D2D;
-  --vp-code-color: #E8C47C;
+  --vp-code-bg: #F5F0E8;
+  --vp-code-color: #374151;
 
   /* 强调色 - 绿色（成功/完成） */
   --vp-c-green-1: #22C55E;

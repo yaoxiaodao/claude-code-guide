@@ -5,7 +5,6 @@
 ## 在线访问
 
 - **GitHub Pages**: [https://yaoxiaodao.github.io/claude-code-guide/](https://yaoxiaodao.github.io/claude-code-guide/)
-- **Gitee Pages**: [https://yaojianfeng.gitee.io/claudecode-guide/](https://yaojianfeng.gitee.io/claudecode-guide/)
 
 ## 本地开发
 

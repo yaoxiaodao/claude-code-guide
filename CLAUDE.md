@@ -59,6 +59,12 @@ docs/
 3. **精准修改** — 只改必须改的
 4. **目标驱动** — 定义可验证的成功标准
 
+## Git 工作流
+
+- **默认只提交本地** — 完成功能或修复后，用 `git add` + `git commit` 提交到本地，不自动推送到远端
+- **推送需明确指令** — 只有用户明确要求"推送"、"push"、"推送到远端"时，才执行 `git push`
+- **构建验证** — 每次提交前确保 `npm run docs:build` 构建通过，无 dead links
+
 ## Skill routing
 
 When the user's request matches an available skill, ALWAYS invoke it using the Skill

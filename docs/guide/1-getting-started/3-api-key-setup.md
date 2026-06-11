@@ -33,27 +33,13 @@ description: 给 Claude Code 配置国产模型 MiniMax Token Plan
 
 ## 配置步骤
 
-### 第一步：安装 Claude Code
-
-如果你还没有安装 Claude Code，先执行安装：
-
-```bash
-npm install -g @anthropic-ai/claude-code
-```
-
-验证安装：
-
-```bash
-claude --version
-```
-
-### 第二步：获取 MiniMax API Key
+### 第一步：获取 MiniMax API Key
 
 1. 访问 [MiniMax Token Plan](https://platform.minimaxi.com/docs/token-plan/claude-code)
 2. 选择合适的套餐订阅
 3. 在控制台获取你的 API Key
 
-### 第三步：配置 Claude Code
+### 第二步：配置 Claude Code
 
 ::: warning 重要提示
 配置前，请确保清除以下 Anthropic 相关环境变量，以免影响 MiniMax API 正常使用：
@@ -108,7 +94,7 @@ unset ANTHROPIC_BASE_URL
 }
 ```
 
-### 第四步：验证配置
+### 第三步：验证配置
 
 在命令行启动 Claude Code：
 

@@ -55,6 +55,17 @@ claude --version
 
 ### 第三步：配置 Claude Code
 
+::: warning 重要提示
+配置前，请确保清除以下 Anthropic 相关环境变量，以免影响 MiniMax API 正常使用：
+
+```bash
+unset ANTHROPIC_AUTH_TOKEN
+unset ANTHROPIC_BASE_URL
+```
+
+若以上变量在 `~/.bashrc` 或 `~/.zshrc` 中被永久导出，请同步删除对应行，否则新开 shell 会再次注入。
+:::
+
 #### 步骤一：编辑 settings.json
 
 编辑 Claude Code 配置文件：

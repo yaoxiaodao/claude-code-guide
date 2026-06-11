@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+本文件为 Claude Code（claude.ai/code）在本仓库工作时提供指导。
 
 ## 项目概述
 
@@ -28,8 +28,8 @@ docs/
 │   ├── 1-getting-started/  # 入门篇（4章）
 │   ├── 2-basic-usage/      # 基础使用篇（3章）
 │   ├── 3-practical-workflows/   # 实战篇（5章）
-│   ├── 4-advanced-usage/  # 高阶篇（5章）
-│   └── 5-next-steps/      # 继续学习（1章）
+│   ├── 4-advanced-usage/   # 高阶篇（5章）
+│   └── 5-next-steps/       # 继续学习（1章）
 ├── public/                 # 静态资源
 └── index.md                # 首页
 ```
@@ -65,21 +65,20 @@ docs/
 - **推送需明确指令** — 只有用户明确要求"推送"、"push"、"推送到远端"时，才执行 `git push`
 - **构建验证** — 每次提交前确保 `npm run docs:build` 构建通过，无 dead links
 
-## Skill routing
+## Skill 路由
 
-When the user's request matches an available skill, ALWAYS invoke it using the Skill
-tool as your FIRST action. Do NOT answer directly, do NOT use other tools first.
+当用户请求匹配到可用 Skill 时，务必使用 Skill 工具作为第一操作。不要直接回答，不要先使用其他工具。
 
-Key routing rules:
-- Product ideas, "is this worth building", brainstorming → invoke office-hours
-- Bugs, errors, "why is this broken", 500 errors → invoke investigate
-- Ship, deploy, push, create PR → invoke ship
-- QA, test the site, find bugs → invoke qa
-- Code review, check my diff → invoke review
-- Update docs after shipping → invoke document-release
-- Weekly retro → invoke retro
-- Design system, brand → invoke design-consultation
-- Visual audit, design polish → invoke design-review
-- Architecture review → invoke plan-eng-review
-- Save progress, checkpoint, resume → invoke checkpoint
-- Code quality, health check → invoke health
+关键路由规则：
+- 产品想法、"值不值得做"、头脑风暴 → invoke office-hours
+- Bug、错误、"为什么坏了"、500 报错 → invoke investigate
+- 交付、部署、推送、创建 PR → invoke ship
+- QA、测试网站、找 Bug → invoke qa
+- 代码审查、检查我的 diff → invoke review
+- 交付后更新文档 → invoke document-release
+- 周回顾 → invoke retro
+- 设计系统、品牌 → invoke design-consultation
+- 视觉审核、设计优化 → invoke design-review
+- 架构评审 → invoke plan-eng-review
+- 保存进度、检查点、恢复 → invoke checkpoint
+- 代码质量、健康检查 → invoke health

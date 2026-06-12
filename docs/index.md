@@ -32,4 +32,7 @@ features:
   <p style="color: var(--vp-c-text-2); font-size: 14px;">
     面向零基础用户，让 AI 编程工具的入门门槛降到最低
   </p>
+  <p style="margin-top: 1rem;">
+    <a href="/guide/cheatsheet">📋 快速参考 — 常用命令速查</a>
+  </p>
 </div>

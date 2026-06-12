@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress'
+import { SearchPlugin } from 'vitepress-plugin-search'
 
 export default defineConfig({
   title: 'Claude Code 中文教程',
@@ -14,6 +15,15 @@ export default defineConfig({
     ['link', { href: 'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&display=swap', rel: 'stylesheet' }]
   ],
 
+  plugins: [
+    SearchPlugin({
+      tokenize: 'jieba',
+      queryMinLength: 1,
+      inMemoryCache: true,
+      locales: 'zh-cn'
+    })
+  ],
+
   themeConfig: {
     logo: '/logo.svg',
 
@@ -22,6 +32,7 @@ export default defineConfig({
       { text: '基础用法', link: '/guide/2-basic-usage/' },
       { text: '实战工作流', link: '/guide/3-practical-workflows/' },
       { text: '高阶用法', link: '/guide/4-advanced-usage/' },
+      { text: '速查', link: '/guide/cheatsheet' },
       { text: '继续学习', link: '/guide/5-next-steps/' }
     ],
 

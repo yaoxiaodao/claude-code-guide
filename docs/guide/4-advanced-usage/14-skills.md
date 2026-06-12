@@ -171,9 +171,9 @@ cp -r /tmp/my-skill ~/.claude/skills/
 
 A: MCP 是让 Claude 连接外部工具（如数据库、GitHub API），Skill 是给 Claude 添加预定义的工作流能力。打个比方：MCP 是"让 Claude 能用筷子"，Skill 是"直接喂饭给 Claude 吃"。
 
-**Q: 安装命令中的 @anthropics 是什么？**
+**Q: 如何找到更多 Skill？**
 
-A: 这是命名空间，标识 Skill 的发布来源。官方 Skill 用 `@anthropics`，社区 Skill 用作者的用户名。
+A: 访问 [claude.ai/code/skills](https://claude.ai/code/skills) 查看官方和社区 Skill 列表，也可以在 GitHub 搜索 `claude-skills` 相关仓库。
 
 **Q: Skill 安全吗？**
 

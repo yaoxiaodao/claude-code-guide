@@ -33,6 +33,6 @@ features:
     面向零基础用户，让 AI 编程工具的入门门槛降到最低
   </p>
   <p style="margin-top: 1rem;">
-    <a href="/guide/cheatsheet">📋 快速参考 — 常用命令速查</a>
+    <a href="guide/cheatsheet.html">📋 快速参考 — 常用命令速查</a>
   </p>
 </div>

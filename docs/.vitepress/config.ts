@@ -1,5 +1,4 @@
 import { defineConfig } from 'vitepress'
-import { SearchPlugin } from 'vitepress-plugin-search'
 
 export default defineConfig({
   title: 'Claude Code 中文教程',
@@ -13,15 +12,6 @@ export default defineConfig({
     ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
     ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }],
     ['link', { href: 'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&display=swap', rel: 'stylesheet' }]
-  ],
-
-  plugins: [
-    SearchPlugin({
-      tokenize: 'jieba',
-      queryMinLength: 1,
-      inMemoryCache: true,
-      locales: 'zh-cn'
-    })
   ],
 
   themeConfig: {
@@ -96,6 +86,13 @@ export default defineConfig({
     socialLinks: [
       { icon: 'github', link: 'https://github.com/yaoxiaodao/claude-code-guide' }
     ],
+
+    search: {
+      provider: 'local',
+      options: {
+        detailedView: true
+      }
+    },
 
     footer: {
       message: '基于 Claude Code 构建',

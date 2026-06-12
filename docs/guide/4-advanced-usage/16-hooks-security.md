@@ -110,9 +110,10 @@ const path = require('path');
 
 const input = JSON.parse(require('fs').readFileSync(0, 'utf8'));
 
-if (input.hook === 'ontool_use' && input.action.type === 'Write') {
+if (input.hook === 'on_tool_use' && input.action.type === 'Write') {
   const logPath = path.join(process.env.HOME, '.claude', 'edit-log.json');
-  const logs = JSON.parse(fs.readFileSync(logPath, 'utf8') || '[]');
+  const raw = fs.existsSync(logPath) ? fs.readFileSync(logPath, 'utf8') : '[]';
+  const logs = JSON.parse(raw);
   logs.push({
     time: new Date().toISOString(),
     file: input.action.path,

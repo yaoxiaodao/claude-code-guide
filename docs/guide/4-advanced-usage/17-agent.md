@@ -51,26 +51,32 @@ claude --agent
 
 **方法三：在配置中启用**
 
+::: warning 配置仅供参考
+Claude Code 的配置文件格式可能随版本变化，请以官方文档为准。当前示例基于社区经验总结。
+:::
+
 ```json
-// .claude.json
+// ~/.claude/settings.json
 {
-  "agentMode": true,
-  "agentMaxSteps": 10
+  "agent": {
+    "enabled": true,
+    "maxSteps": 10
+  }
 }
 ```
 
 ### Agent 模式配置
 
-```json
-{
-  "agent": {
-    "enabled": true,
-    "maxSteps": 10,
-    "confirmBeforeExecute": true,
-    "dangerousActions": ["delete", "forcePush"]
-  }
-}
-```
+以下配置项为社区经验总结，实际可用选项请参考官方文档：
+
+| 配置项 | 说明 | 默认值 |
+|--------|------|--------|
+| enabled | 是否启用 Agent 模式 | false |
+| maxSteps | 最大自主步骤数 | 5 |
+
+::: tip 提示
+Agent 模式的完整配置选项和最新说明，请查阅 [Claude Code 官方文档](https://docs.anthropic.com/en/docs/claude-code)。
+:::
 
 | 配置项 | 说明 | 默认值 |
 |--------|------|--------|

@@ -31,25 +31,23 @@ Skill（技能）是 Claude Code 的扩展包，每个 Skill 封装了特定领�
 
 ### 安装 Skill
 
-通过 Plugin 系统安装：
+在 Claude Code 对话界面中直接操作，或通过命令行：
 
 ```bash
-# 格式：claude plugin install <skill-name>@<namespace>
-claude plugin install browse@anthropics
-claude plugin install review@anthropics
+# 在对话中输入
+/install browse
+
+# 或使用 skills 子命令
+claude skills install browse
 ```
 
 ### 查看已安装的 Skill
 
-```bash
-claude plugin list
-```
+在 Claude Code 中输入 `/skills` 查看所有已安装的技能。
 
 ### 卸载 Skill
 
-```bash
-claude plugin uninstall <skill-name>
-```
+删除 `~/.claude/skills/<skill-name>/` 目录即可。
 
 ## 使用 Skill
 
@@ -74,7 +72,7 @@ claude --skill browse "打开 github.com 并截图"
 让 Claude 具备网页浏览能力：
 
 ```bash
-claude plugin install browse@anthropics
+claude skills install browse
 ```
 
 **使用场景**：
@@ -87,7 +85,7 @@ claude plugin install browse@anthropics
 增强代码审查能力：
 
 ```bash
-claude plugin install review@anthropics
+claude skills install review
 ```
 
 **使用场景**：
@@ -100,7 +98,7 @@ claude plugin install review@anthropics
 生成 UI 设计稿：
 
 ```bash
-claude plugin install design@anthropics
+claude skills install design
 ```
 
 **使用场景**：
@@ -113,7 +111,7 @@ claude plugin install design@anthropics
 自动化 QA 测试：
 
 ```bash
-claude plugin install qa@anthropics
+claude skills install qa
 ```
 
 **使用场景**：

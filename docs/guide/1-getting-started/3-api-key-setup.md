@@ -1,6 +1,6 @@
 ---
 title: 第三章：API Key 获取与配置
-description: 给 Claude Code 配置国产模型 MiniMax Token Plan
+description: 给 Claude Code 配置 MiniMax Token Plan，享受稳定低价的国内访问
 ---
 
 # 第三章：API Key 获取与配置

@@ -1,6 +1,8 @@
 ---
 title: 第十九章：Subagents 与并行会话
 description: 用子代理把脏活挪出主对话，用分叉和 worktree 同时推进多条线
+lastVerified: "2026-02-24"
+officialDoc: https://code.claude.com/docs/zh-CN/sub-agents
 ---
 
 # 第十九章：Subagents 与并行会话

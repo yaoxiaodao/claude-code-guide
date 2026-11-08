@@ -4,7 +4,7 @@ layout: home
 hero:
   name: "Claude Code"
   text: "中文渐进式教程"
-  tagline: "从零开始学习 AI 编程助手"
+  tagline: "从零开始学习 AI 编程助手 · 已按 v2.1.x 校对"
   actions:
     - theme: brand
       text: 快速开始 →
@@ -35,4 +35,7 @@ features:
   <p style="margin-top: 1rem;">
     <a href="guide/cheatsheet.html">📋 快速参考 — 常用命令速查</a>
   </p>
-</div>
+  <p style="margin-top: 0.5rem;">
+    <a href="guide/about.html">🕓 关于本教程 — 对齐版本与过时自查</a>
+  </p>
+</div>/

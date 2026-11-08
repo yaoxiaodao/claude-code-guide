@@ -1,6 +1,8 @@
 ---
 title: 第二章：安装 Claude Code
 description: 在 Windows / Mac 上安装 Claude Code，含国内网络与镜像方案
+lastVerified: "2026-02-24"
+officialDoc: https://code.claude.com/docs/zh-CN/setup
 ---
 
 # 第二章：安装 Claude Code

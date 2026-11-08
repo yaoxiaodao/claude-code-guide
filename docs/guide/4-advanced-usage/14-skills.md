@@ -1,6 +1,8 @@
 ---
 title: 第十四章：Skill 的安装与使用
 description: 学会使用 Claude Code 的 Skill 技能扩展
+lastVerified: "2026-02-24"
+officialDoc: https://code.claude.com/docs/zh-CN/skills
 ---
 
 # 第十四章：Skill 的安装与使用

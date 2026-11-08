@@ -1,6 +1,8 @@
 ---
 title: 第十三章：MCP — 连接外部工具
 description: 学会使用 Model Context Protocol 连接数据库、GitHub 等外部工具
+lastVerified: "2026-02-24"
+officialDoc: https://code.claude.com/docs/zh-CN/mcp
 ---
 
 # 第十三章：MCP — 连接外部工具

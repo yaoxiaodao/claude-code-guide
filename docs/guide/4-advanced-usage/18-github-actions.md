@@ -1,6 +1,8 @@
 ---
 title: 第十八章：GitHub Actions 集成
 description: 将 Claude Code 集成到 CI/CD 流水线
+lastVerified: "2026-02-24"
+officialDoc: https://code.claude.com/docs/zh-CN/github-actions
 ---
 
 # 第十八章：GitHub Actions 集成

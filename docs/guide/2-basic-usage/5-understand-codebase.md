@@ -1,6 +1,8 @@
 ---
 title: 第五章：读懂代码库
 description: 学会让 Claude 分析和理解现有代码
+lastVerified: "2026-02-24"
+officialDoc: https://code.claude.com/docs/zh-CN/how-claude-code-works
 ---
 
 # 第五章：读懂代码库

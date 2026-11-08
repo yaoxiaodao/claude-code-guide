@@ -153,9 +153,25 @@ chore: bump vitepress to 1.6.0
 
 1. `npm run docs:build` 通过
 2. 新增页面已在 `config.ts` 的 `nav` + `sidebar` 注册
-3. `git status` 无意外文件（尤其无 `.DS_Store`、`.idea/`）
+3. 新增页面已加 `lastVerified` 与 `officialDoc` 字段
+4. `git status` 无意外文件（尤其无 `.DS_Store`、`.idea/`）
 
 ## 7. 常见任务指南
+
+### 内容保鲜（重要）
+
+Claude Code 官方文档更新很快，几个月就会有一轮术语和默认行为变化。本项目采用**逐章校对**机制：
+
+1. 每篇文章的 frontmatter 必须带这三个字段：
+   ```yaml
+   lastVerified: "2026-02-24"          # 必须加引号，否则会被当成 Date
+   officialDoc: https://code.claude.com/docs/zh-CN/xxx
+   ```
+2. 页面底部的「本文最后按官方文档核对」提示由 `theme/index.ts` 的 `VerifiedNote` 自动渲染，**不要在正文里手写日期**
+3. 校对时优先拿 Markdown 原文：官方任意页面地址后加 `.md`，例如 `https://code.claude.com/docs/zh-CN/overview.md`
+4. 全站目录索引：`https://code.claude.com/docs/llms.txt`
+5. 抓取页面正文时**不要**用 HTML 地址（内容是 JS 渲染的，只能拿到碎片），必须用 `.md` 地址
+6. 校对完成后更新 `docs/guide/about.md` 里的核对状态表与未覆盖清单
 
 ### 新增一章教程（约 40-90 分钟）
 

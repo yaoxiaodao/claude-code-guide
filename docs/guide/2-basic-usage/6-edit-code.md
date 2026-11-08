@@ -1,6 +1,8 @@
 ---
 title: 第六章：编辑和创建代码
 description: 学会让 Claude 直接帮你写代码、修改代码
+lastVerified: "2026-02-24"
+officialDoc: https://code.claude.com/docs/zh-CN/common-workflows
 ---
 
 # 第六章：编辑和创建代码

@@ -1,6 +1,8 @@
 ---
 title: 第八章：调试和错误处理
 description: 学会让 Claude 帮你找 bug 和修复错误
+lastVerified: "2026-02-24"
+officialDoc: https://code.claude.com/docs/zh-CN/troubleshooting
 ---
 
 # 第八章：调试和错误处理

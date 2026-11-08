@@ -1,6 +1,8 @@
 ---
 title: 第七章：上下文与会话管理
 description: 看懂上下文窗口、压缩时机、会话恢复与回滚，让长任务不失控
+lastVerified: "2026-02-24"
+officialDoc: https://code.claude.com/docs/zh-CN/sessions
 ---
 
 # 第七章：上下文与会话管理

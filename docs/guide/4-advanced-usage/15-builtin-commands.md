@@ -1,6 +1,8 @@
 ---
 title: 第十五章：内置命令与自定义命令
 description: 按场景记住最常用的斜杠命令，并把自己的提示词变成可复用的命令
+lastVerified: "2026-02-24"
+officialDoc: https://code.claude.com/docs/zh-CN/commands
 ---
 
 # 第十五章：内置命令与自定义命令

@@ -1,6 +1,8 @@
 ---
 title: 第十二章：日常工作流实战
 description: 整合前面所学，体验完整的 AI 辅助开发流程
+lastVerified: "2026-02-24"
+officialDoc: https://code.claude.com/docs/zh-CN/best-practices
 ---
 
 # 第十二章：日常工作流实战

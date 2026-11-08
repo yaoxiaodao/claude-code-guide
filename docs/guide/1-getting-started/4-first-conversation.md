@@ -1,6 +1,8 @@
 ---
 title: 第四章：首次对话
 description: 学会和 Claude Code 对话，并掌握头三个必会的按键与命令
+lastVerified: "2026-02-24"
+officialDoc: https://code.claude.com/docs/zh-CN/quickstart
 ---
 
 # 第四章：首次对话

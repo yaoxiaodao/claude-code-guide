@@ -1,6 +1,8 @@
 ---
 title: 第九章：代码审查和优化
 description: 学会让 Claude 做代码审查
+lastVerified: "2026-02-24"
+officialDoc: https://code.claude.com/docs/zh-CN/code-review
 ---
 
 # 第九章：代码审查和优化

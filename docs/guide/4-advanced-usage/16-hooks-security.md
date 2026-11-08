@@ -1,6 +1,8 @@
 ---
 title: 第十六章：Hooks 与安全配置
 description: 学会使用 Hooks 系统和配置安全策略
+lastVerified: "2026-02-24"
+officialDoc: https://code.claude.com/docs/zh-CN/hooks
 ---
 
 # 第十六章：Hooks 与安全配置

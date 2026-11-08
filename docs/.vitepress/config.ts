@@ -78,7 +78,8 @@ export default defineConfig({
         {
           text: '继续学习',
           items: [
-            { text: '第二十章：继续学习之路', link: '/guide/5-next-steps/20-next-steps' }
+            { text: '第二十章：继续学习之路', link: '/guide/5-next-steps/20-next-steps' },
+            { text: '关于本教程', link: '/guide/about' }
           ]
         }
       ]

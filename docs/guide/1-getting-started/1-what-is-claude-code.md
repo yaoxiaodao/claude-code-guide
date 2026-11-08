@@ -1,6 +1,8 @@
 ---
 title: 第一章：Claude Code 是什么
 description: 了解 Claude Code 的基本概念、使用场景，以及在中国大陆怎么用
+lastVerified: "2026-02-24"
+officialDoc: https://code.claude.com/docs/zh-CN/overview
 ---
 
 # 第一章：Claude Code 是什么

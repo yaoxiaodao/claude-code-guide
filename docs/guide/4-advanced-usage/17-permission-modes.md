@@ -1,6 +1,8 @@
 ---
 title: 第十七章：权限模式与自动执行
 description: 五种权限模式、Shift+Tab 切换、自动模式的分类器边界，以及计划模式怎么用
+lastVerified: "2026-02-24"
+officialDoc: https://code.claude.com/docs/zh-CN/permission-modes
 ---
 
 # 第十七章：权限模式与自动执行

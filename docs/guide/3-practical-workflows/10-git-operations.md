@@ -1,6 +1,8 @@
 ---
 title: 第十章：Git 操作辅助
 description: 学会让 Claude 辅助 Git 操作
+lastVerified: "2026-02-24"
+officialDoc: https://code.claude.com/docs/zh-CN/common-workflows
 ---
 
 # 第十章：Git 操作辅助

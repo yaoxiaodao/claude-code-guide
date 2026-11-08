@@ -1,6 +1,8 @@
 ---
 title: 第三章：第三方 API 中转配置
 description: 用国内中转服务（以 MiniMax 为例）把 Claude Code 跑起来，免翻墙、免海外支付
+lastVerified: "2026-02-24"
+officialDoc: https://code.claude.com/docs/zh-CN/authentication
 ---
 
 # 第三章：第三方 API 中转配置

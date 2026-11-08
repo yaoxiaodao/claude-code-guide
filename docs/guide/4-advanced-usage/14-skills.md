@@ -193,4 +193,4 @@ A: 可以，Claude Code 支持同时启用多个 Skill。
 
 下一章我们会学习 Claude Code 的内置命令。
 
-[:point_right: 第十五章：claude 命令](/guide/4-advanced-usage/15-builtin-commands)
+[:point_right: 第十五章：内置命令与自定义命令](/guide/4-advanced-usage/15-builtin-commands)

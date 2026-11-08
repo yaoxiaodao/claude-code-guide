@@ -33,7 +33,7 @@ export default defineConfig({
           items: [
             { text: '第一章：Claude Code 是什么', link: '/guide/1-getting-started/1-what-is-claude-code' },
             { text: '第二章：安装 Claude Code', link: '/guide/1-getting-started/2-installation' },
-            { text: '第三章：API Key 获取与配置', link: '/guide/1-getting-started/3-api-key-setup' },
+            { text: '第三章：第三方 API 中转配置', link: '/guide/1-getting-started/3-api-key-setup' },
             { text: '第四章：首次对话', link: '/guide/1-getting-started/4-first-conversation' }
           ]
         }
@@ -66,10 +66,11 @@ export default defineConfig({
           items: [
             { text: '第十三章：MCP', link: '/guide/4-advanced-usage/13-mcp' },
             { text: '第十四章：Skill', link: '/guide/4-advanced-usage/14-skills' },
-            { text: '第十五章：Command 命令', link: '/guide/4-advanced-usage/15-builtin-commands' },
+            { text: '第十五章：内置命令与自定义命令', link: '/guide/4-advanced-usage/15-builtin-commands' },
             { text: '第十六章：Hooks 与安全配置', link: '/guide/4-advanced-usage/16-hooks-security' },
-            { text: '第十七章：Agent 模式', link: '/guide/4-advanced-usage/17-agent' },
-            { text: '第十八章：GitHub Actions 集成', link: '/guide/4-advanced-usage/18-github-actions' }
+            { text: '第十七章：权限模式与自动执行', link: '/guide/4-advanced-usage/17-permission-modes' },
+            { text: '第十八章：GitHub Actions 集成', link: '/guide/4-advanced-usage/18-github-actions' },
+            { text: '第十九章：Subagents 与并行会话', link: '/guide/4-advanced-usage/19-subagents' }
           ]
         }
       ],
@@ -77,7 +78,7 @@ export default defineConfig({
         {
           text: '继续学习',
           items: [
-            { text: '第十九章：继续学习之路', link: '/guide/5-next-steps/19-next-steps' }
+            { text: '第二十章：继续学习之路', link: '/guide/5-next-steps/20-next-steps' }
           ]
         }
       ]

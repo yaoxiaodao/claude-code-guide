@@ -1,20 +1,31 @@
 ---
-title: 第三章：API Key 获取与配置
-description: 给 Claude Code 配置 MiniMax Token Plan，享受稳定低价的国内访问
+title: 第三章：第三方 API 中转配置
+description: 用国内中转服务（以 MiniMax 为例）把 Claude Code 跑起来，免翻墙、免海外支付
 ---
 
-# 第三章：API Key 获取与配置
+# 第三章：第三方 API 中转配置
 
 ::: tip 学习目标
-学完这章，你会把 Claude Code 接入国产模型 MiniMax，享受更低成本和更稳定的国内访问。
+学完这章，你会把 Claude Code 接入国内中转服务（以 MiniMax 为例），免翻墙、免海外信用卡就能开始用。
 :::
 
-## 为什么选择 MiniMax？
+::: warning 先确认你走哪条路
+- **已有官方订阅或 Anthropic API Key** → 跳过本章。直接运行 `claude`，按提示在浏览器里登录（或在会话里输入 `/login`）即可
+- **没有海外支付方式** → 继续读本章，用第三方中转，这是大多数国内用户的选择
+
+两条路互不冲突，以后想换随时可以改配置。
+:::
+
+## 为什么用中转？
 
 - **国内访问稳定**：无需翻墙，API 直连国内服务器
-- **成本更低**：相比官方 API，价格更优惠
-- **模型能力强**：MiniMax-M3 在编程任务上表现优秀
-- **Token Plan 权益**：订阅即可使用多种模态模型
+- **付款方便**：支付宝/微信即可，不需要海外信用卡
+- **成本更低**：按量付费，几块钱就能试用
+- **兼容 Anthropic 接口**：Claude Code 只认 `ANTHROPIC_BASE_URL` + `ANTHROPIC_AUTH_TOKEN`，换一家中转只要改这两行
+
+::: tip 本章以 MiniMax 为例
+下面的配置步骤是 MiniMax Token Plan 的。用别家中转（如各类 Claude API 代理）时，把 `ANTHROPIC_BASE_URL` 和 `ANTHROPIC_AUTH_TOKEN` 换成对方给的值，其余照抄。
+:::
 
 ## 邀请有礼
 
@@ -103,6 +114,8 @@ claude
 ```
 
 输入 `/model` 查看当前使用的模型，确认已切换到 MiniMax。
+
+也可以直接问它一句「你现在是什么模型」，或运行 `/status` 查看当前配置。想确认请求真的走了中转，看一眼 `settings.json` 里的 `ANTHROPIC_BASE_URL` 即可。
 
 ## 可用模型
 

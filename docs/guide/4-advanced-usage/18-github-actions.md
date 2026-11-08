@@ -9,6 +9,15 @@ description: 将 Claude Code 集成到 CI/CD 流水线
 学完这章，你会配置 GitHub Actions 让 Claude Code 自动审查 PR、执行代码检查。
 :::
 
+::: warning 先试最快的一条路
+如果你的目标只是「让我仓库里的 PR 能被 `@claude` 评论触发」或「让 Claude 自动审查 PR」，先试官方通道，少写一半配置：
+
+1. 在会话里运行 `/install-github-app`，按提示选仓库，它会自动装好 GitHub App 并配好 secrets
+2. 或者用官方 Action `anthropics/claude-code-action`，不用手写安装步骤
+
+本章后面的内容讲**手动搭建完整工作流**，适合需要自定义触发条件和步骤的场景。想先跑通直接跳到 [基础配置](#基础配置)。
+:::
+
 ## 为什么需要 CI/CD 集成
 
 将 Claude Code 集成到 CI/CD 可以实现：
@@ -59,7 +68,7 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
-          claude --print "/review"
+          claude --print "/code-review"
 ```
 
 ## 自动化代码审查
@@ -373,4 +382,4 @@ A: 可以，但建议设置并发限制避免 API 限流。
 
 恭喜你完成了高阶用法篇！接下来进入最后一章，总结所学并探索下一步。
 
-[:point_right: 第十九章：继续学习之路](../5-next-steps/19-next-steps)
+[:point_right: 第十九章：Subagents 与并行会话](../4-advanced-usage/19-subagents)

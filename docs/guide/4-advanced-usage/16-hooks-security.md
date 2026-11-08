@@ -279,4 +279,4 @@ A: 将安全配置文件纳入配置管理（Ansible、Salt、Chef 等），在�
 
 下一章我们会学习 Agent 模式与代理配置。
 
-[:point_right: 第十七章：Agent 模式与代理配置](/guide/4-advanced-usage/17-agent)
+[:point_right: 第十七章：权限模式与自动执行](/guide/4-advanced-usage/17-permission-modes)

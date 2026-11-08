@@ -1,397 +1,202 @@
 ---
-title: 第十五章：Command 命令
-description: 熟练使用内置命令和自定义命令
+title: 第十五章：内置命令与自定义命令
+description: 按场景记住最常用的斜杠命令，并把自己的提示词变成可复用的命令
 ---
 
-# 第十五章：Command 命令
+# 第十五章：内置命令与自定义命令
 
 ::: tip 学习目标
-学完这章，你会熟练使用 Claude Code 的内置命令和自定义命令，提高工作效率。
+学完这章，你不用背命令表——按场景记住 8 个高频命令，并且能把自己的常用提示词变成 `/我的命令`。
 :::
 
-## 命令与 Skill 的区别
+::: warning 先纠正一个常见误解
+以前"**命令**（`.claude/commands/`）"和"**Skill**（`.claude/skills/`）"是两套东西。**现在它们已经合并了**：自定义命令就是 skill 的一种写法。
 
-很多初学者容易混淆 **命令（Command）** 和 **Skill**：
+- 旧写法 `.claude/commands/deploy.md` 仍然有效，不需要改
+- 新写的建议用 `.claude/skills/deploy/SKILL.md`
+- 两者都一样触发 `/deploy`，行为一致
 
-| 维度 | 命令 (Command) | Skill (技能) |
-|------|--------------|-------------|
-| **触发方式** | `/命令名` | `/skill名` |
-| **实现形式** | 纯文本文件 | 目录 + SKILL.md + 可选代码 |
-| **复杂程度** | 简单文本替换 | 复杂 AI 工作流 |
-| **适用场景** | 重复文本/指令 | 复杂可复用工作流 |
-| **存储位置** | `.claude/commands/` | `.claude/skills/` |
+所以本章讲"内置命令 + 自定义命令"，第十四章讲 Skill 的完整能力。不用再纠结概念区别。
+:::
 
-**简单理解**：
-- **命令** = 快捷键，快速执行固定文本
-- **Skill** = 工具包，封装复杂能力
+## 有哪些命令
 
-## 内置命令
+在会话里输入 `/` 就会弹出命令列表，继续输入字母可以模糊筛选。`/help` 查看帮助。
 
-输入 `/` 可以看到所有可用命令（Tab 补全支持模糊搜索）：
+::: tip 命令菜单会藏东西
+列表里不显示全部。有些命令必须完整输入名字才认（比如 `/heapdump`），有些要看你的平台和套餐才出现。
+:::
 
-```
-/ask      /plan      /review    /init
-/complete /rewind    /clear     /diff
-/memory   /sessions  /export    /compact
-```
+## 按场景记，比背命令表有效
 
-### 常用内置命令详解
+### 场景一：第一次进一个仓库
 
-#### 1. `/ask` — 快速提问
+| 命令 | 作用 |
+|---|---|
+| `/init` | 读项目，生成 `CLAUDE.md` |
+| `/memory` | 编辑 `CLAUDE.md`、开关自动记忆 |
+| `/mcp` | 配置项目需要的 MCP 服务器 |
+| `/permissions` | 设置 allow / ask / deny 规则 |
 
-直接问一个问题，不需要在代码库上下文中：
+### 场景二：干活过程中
 
-```
-/ask 什么是 TypeScript 的泛型？
-```
+| 命令 | 作用 |
+|---|---|
+| `/plan` | 大改动前先要方案，一行代码不改 |
+| `/model` | 切模型（`sonnet` / `opus` / `haiku`） |
+| `/effort` | 调推理强度（`low` → `xhigh`） |
+| `/context` | 看上下文被什么占满了 |
+| `/compact` | 压缩历史，释放空间 |
+| `/btw` | 问个旁支问题，不进对话历史 |
 
-**使用场景：**
-- 快速查概念
-- 临时问答
-- 不需要看代码的简单问题
+::: tip `/btw` 很实用
+"这个项目为什么用 pnpm？"这种问题用 `/btw`，答案不会污染主对话的上下文。普通提问则会永久留在历史里。
+:::
 
-#### 2. `/plan` — 生成任务计划
+### 场景三：提交之前
 
-让 Claude 分析代码库，生成修改计划：
+| 命令 | 作用 |
+|---|---|
+| `/diff` | 看它到底改了什么 |
+| `/code-review` | 审查当前分支改动（`--fix` 可直接改） |
+| `/security-review` | 只看安全漏洞 |
 
-```
-/plan
-帮我重构 auth 模块，把 session 改成 JWT
-```
+### 场景四：出问题时
 
-Claude 会：
-1. 分析现有代码结构
-2. 生成修改步骤
-3. 等待你确认后执行
+| 命令 | 作用 |
+|---|---|
+| `/rewind` | 回滚代码和对话到检查点（`Esc` 两下同效） |
+| `/doctor` | 体检安装、配置、扩展、`CLAUDE.md` 并给修复建议 |
+| `/debug` | 开启日志并从日志里排查问题 |
+| `/status` | 看当前模型和配置状态 |
 
-#### 3. `/review` — 代码审查
+### 场景五：会话之间
 
-对当前分支的代码进行全面审查：
+| 命令 | 作用 |
+|---|---|
+| `/clear [名字]` | 开新对话（可带名字，方便以后找回） |
+| `/resume` | 切到另一个会话 |
+| `/branch` | 从当前对话分叉 |
+| `/recap` | 生成一句话摘要 |
+| `/export` | 导出对话文本 |
+| `/exit` | 退出 |
 
-```
-/review
-```
+## 自定义命令：把你的话术固定下来
 
-Claude 会：
-1. 检查代码质量问题
-2. 发现潜在 bug
-3. 给出优化建议
+如果你发现自己反复输入同一段指令，就该做成命令。
 
-#### 4. `/init` — 初始化项目
-
-扫描当前代码库，生成 CLAUDE.md 项目规范文件：
-
-```
-/init
-```
-
-Claude 会分析代码结构、模块关系、依赖管理方式，生成一份项目文档。适合接手新项目时快速了解全貌。
-
-#### 5. `/rewind` — 回退对话和文件
-
-同时回退两件事：
-1. **对话历史** — 回到之前的某个对话节点
-2. **文件状态** — 文件也会恢复到那个节点的样子
-
-改坏了文件不用从 Git 逐个还原：
+### 最简做法：直接让 Claude 帮你建
 
 ```
-/rewind
+在 .claude/skills/ 下创建一个叫 pr-desc 的命令，
+读当前分支的 git diff，生成一段 PR 描述：
+改了什么、为什么改、怎么验证。输出直接给 markdown，不要解释过程。
 ```
 
-#### 8. `/diff` — 查看代码修改
+它会生成 `.claude/skills/pr-desc/SKILL.md`。之后输入 `/pr-desc` 就能用。
 
-查看当前对话中所有文件变更的汇总：
-
-```
-/diff
-```
-
-#### 9. `/clear` — 清空对话
-
-清空当前对话历史：
-
-```
-/clear
-```
-
-#### 10. `/complete` — 标记完成
-
-标记任务完成：
-
-```
-/complete
-```
-
-## 自定义命令
-
-除了内置命令，你还可以创建自定义命令。
-
-### 什么是自定义命令
-
-自定义命令是将常用的文本或指令封装成快捷方式，方便重复使用。
-
-**适用场景**：
-- 固定格式的代码模板
-- 常用的 Git 操作序列
-- 重复性的文本输入
-
-### 创建自定义命令
-
-#### 目录结构
-
-**项目级**（纳入 Git，团队共享）：
-```
-项目根目录/
-└── .claude/
-    └── commands/
-        └── my-command.md
-```
-
-**用户级**（跨项目通用）：
-```
-~/.claude/
-└── commands/
-    └── my-command.md
-```
-
-#### 命令文件格式
+### 手写也很简单
 
 ```markdown
-# 命令名称
-命令描述（可选）
-
+---
+name: pr-desc
+description: 根据当前分支的改动生成 PR 描述。在准备提 PR 时使用。
 ---
 
-你要执行的指令内容
+读当前分支相对主分支的 diff，按下面格式输出，不要输出其他内容：
+
+## 改了什么
+（3 条以内）
+## 为什么改
+（2 条以内）
+## 怎么验证
+（可执行的命令）
 ```
 
-### 实际案例
+两个字段的含义：
 
-#### 案例 1：代码模板命令
+| 字段 | 作用 |
+|---|---|
+| `name` | 命令名，也就是 `/pr-desc` 里的那部分 |
+| `description` | **Claude 靠它判断何时主动用这个 skill**，写清触发时机 |
 
-**场景**：快速插入 React 组件模板
+### 传参数
 
-**创建** `~/.claude/commands/react-component.md`：
-
-```markdown
-# react-component
-生成 React 函数组件模板
-
----
-
-请生成以下格式的 React 函数组件：
-
-```jsx
-import React from 'react';
-
-export function ComponentName({ props }) {
-  return (
-    <div>
-      {/* 组件内容 */}
-    </div>
-  );
-}
-```
-
-使用 `{ComponentName}` 作为组件名。
-```
-
-**使用**：
-```
-/react-component
-Button
-```
-
-#### 案例 2：Git 提交命令
-
-**场景**：规范 Git 提交信息格式
-
-**创建** `~/.claude/commands/git-commit.md`：
-
-```markdown
-# git-commit
-生成规范的 Git 提交信息
-
----
-
-请根据我刚才的修改生成符合 Conventional Commits 规范的提交信息。
-格式：type(scope): description
-类型：feat/fix/docs/style/refactor/test/chore
-```
-
-**使用**：
-```
-/git-commit
-```
-
-#### 案例 3：项目文档命令
-
-**场景**：快速生成 API 文档模板
-
-**创建** `docs/.claude/commands/api-doc.md`：
-
-```markdown
-# api-doc
-生成 API 文档模板
-
----
-
-请为以下 API 生成 Markdown 文档：
-
-## 接口名称
-[简要描述]
-
-## 请求方式
-GET/POST/PUT/DELETE
-
-## 请求参数
-| 参数名 | 类型 | 必填 | 说明 |
-|--------|------|------|------|
-
-## 响应示例
-```json
-{
-  "code": 0,
-  "data": {}
-}
-```
-```
-
-#### 案例 4：测试用例命令
-
-**场景**：快速生成测试文件模板
-
-**创建** `tests/.claude/commands/test-file.md`：
-
-```markdown
-# test-file
-生成测试文件模板
-
----
-
-请为 {filename} 生成 Jest 测试文件，使用以下模板：
-
-```javascript
-describe('模块名', () => {
-  test('测试用例描述', () => {
-    // Arrange
-    const input = {};
-    
-    // Act
-    const result = functionName(input);
-    
-    // Assert
-    expect(result).toBe(expected);
-  });
-});
-```
-```
-
-### 管理自定义命令
-
-| 操作 | 命令 |
-|------|------|
-| 查看所有命令 | 输入 `/` 查看 |
-| 创建新命令 | 在 `.claude/commands/` 目录添加 `.md` 文件 |
-| 编辑命令 | 修改对应 `.md` 文件 |
-| 删除命令 | 删除对应 `.md` 文件 |
-
-### 命令文件规范
-
-1. **文件名** = 命令名（不含扩展名）
-2. **首行** = 命令名称（与文件名一致）
-3. **第二行起** = 空行后可写描述
-4. **分隔线** `---` 后是执行的指令内容
-5. **占位符** 用 `{变量名}` 表示，调用时替换
-
-## 命令行参数
-
-除了斜杠命令，还可以在启动时加参数：
-
-### 基本参数
-
-| 参数 | 说明 | 示例 |
-|------|------|------|
-| `-p, --print` | 只输出结果，不交互 | `claude -p "解释这段代码"` |
-| `-c, --cached` | 使用缓存的对话 | `claude -c` |
-| `--model` | 指定模型 | `claude --model opus` |
-
-### Agent 模式
+命令名后面的文字会成为该命令的参数：
 
 ```
-claude --agent
+/pr-desc 重点突出数据库迁移的部分
 ```
 
-让 Claude 自主决策和执行多步骤任务。
+### 放哪
 
-### 指定项目目录
+| 位置 | 生效范围 |
+|---|---|
+| `.claude/skills/` | 当前项目，可提交进 git 与团队共享 |
+| `~/.claude/skills/` | 你所有项目 |
 
+::: warning 一个坑
+如果你用的是旧的 `.claude/commands/` 目录，改完文件需要重启会话才生效；`.claude/skills/` 支持运行中改动即时生效（`/reload-skills` 可手动重扫）。
+:::
+
+## 命令行参数（不在会话里用）
+
+| 参数 | 说明 |
+|---|---|
+| `claude` | 交互式启动 |
+| `claude -p "..."` | 非交互模式，输出后退出，可接管道 |
+| `claude --continue` | 接着当前目录上次的会话 |
+| `claude --resume` | 从列表恢复 |
+| `claude --model opus` | 指定模型 |
+| `claude --permission-mode plan` | 指定启动权限模式 |
+| `claude --worktree <名>` | 在独立 worktree 里开会话 |
+| `claude doctor` | 体检 |
+| `claude update` | 升级 |
+
+管道用法（适合脚本和 CI）：
+
+```bash
+cat error.log | claude -p "这些报错的共同原因是什么？"
 ```
-claude /path/to/project
-```
-
-在指定目录启动 Claude Code。
-
-## 快捷键
-
-| 快捷键 | 功能 |
-|--------|------|
-| `Ctrl+C` | 中断当前操作 |
-| `Ctrl+D` | 退出 Claude |
-| `Ctrl+L` | 清空屏幕 |
-| `↑` / `↓` | 切换历史命令 |
 
 ## 环境变量
 
-### CLAUDE_API_KEY
+| 变量 | 说明 |
+|---|---|
+| `ANTHROPIC_BASE_URL` | 自定义 API 端点（中转用） |
+| `ANTHROPIC_AUTH_TOKEN` | 中转服务密钥 |
+| `ANTHROPIC_API_KEY` | 官方 API 密钥 |
+| `ANTHROPIC_MODEL` | 默认模型 |
+| `CLAUDE_CONFIG_DIR` | 独立配置目录，用于多账号 |
 
-设置 API Key（也可以用 `claude --local` 交互式设置）：
-
-```bash
-export CLAUDE_API_KEY=your-api-key
-```
-
-### CLAUDE_BASE_URL
-
-使用代理或自定义端点：
-
-```bash
-export CLAUDE_BASE_URL=https://your-proxy.com
-```
-
-### CLAUDE_MODEL
-
-指定默认模型：
-
-```bash
-export CLAUDE_MODEL=opus
-```
+::: warning 前缀是 `ANTHROPIC_`，不是 `CLAUDE_`
+写成 `CLAUDE_API_KEY` 是无效的，不会报错但也不生效——这是新手最常踩的坑。想永久生效就写进 `~/.claude/settings.json` 的 `env` 字段。
+:::
 
 ## 常见问题
 
-**Q: `/plan` 和直接说"帮我改"有什么区别？**
+**Q: 输入 `/` 没反应？**
 
-A: `/plan` 会先分析代码，生成详细的修改计划，等你确认后再执行。更安全，适合大改动。
+A: 确认光标在输入框最前面。命令只在消息**开头**被识别。
 
-**Q: 命令和 Skill 哪个更好用？**
+**Q: 我的自定义命令不出现？**
 
-A: 简单重复任务用命令，复杂工作流用 Skill。命令是快捷键，Skill 是工具箱。
+A: 检查 `SKILL.md` 的 frontmatter 有没有 `name`，以及目录层级对不对（`.claude/skills/<名字>/SKILL.md`）。改完用 `/reload-skills` 重扫。
 
-**Q: 命令行参数和配置文件哪个优先级高？**
+**Q: 一条消息能用多个命令吗？**
 
-A: 命令行参数 > 配置文件 > 默认值。
+A: 能。`/command-a /command-b 具体任务`，最多串六个，末尾的文字会作为参数传给每个命令。
+
+**Q: `/review` 和 `/code-review` 有什么区别？**
+
+A: 没有，`/review` 是别名。新写的内容统一用 `/code-review`。
 
 ## 练习题
 
-1. 输入 `/` 查看所有可用命令（用 Tab 补全体验模糊搜索）
-2. 用 `/ask` 问一个简单问题
-3. 用 `/review` 审查一段代码
-4. 尝试 `/rewind` 回退对话
-5. 创建一个简单的自定义命令
+1. 输入 `/` 浏览一遍命令列表，用模糊搜索找一个你感兴趣的命令
+2. 用 `/btw` 问一个旁支问题，然后确认它没出现在 `/context` 的历史里
+3. 把一段你反复用的提示词做成 `/my-check` 命令，试用一次
 
 ## 下一章
-
-恭喜你完成了高阶用法前三章！接下来学习 Hooks 与安全配置。
 
 [:point_right: 第十六章：Hooks 与安全配置](/guide/4-advanced-usage/16-hooks-security)
